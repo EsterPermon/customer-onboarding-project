@@ -80,10 +80,11 @@
             <label
               [ngClass]="{
                 error:
-                  isFormInvalid &&
-                  (userInfoForm.get('dayOfBirth')?.invalid ||
-                    userInfoForm.get('monthOfBirth')?.invalid ||
-                    userInfoForm.get('yearOfBirth')?.invalid)
+                  (isFormInvalid &&
+                    (userInfoForm.get('dayOfBirth')?.invalid ||
+                      userInfoForm.get('monthOfBirth')?.invalid ||
+                      userInfoForm.get('yearOfBirth')?.invalid)) ||
+                  isBirthDateInvalid
               }"
               >Date of birth</label
             >
@@ -135,5 +136,7 @@
       </form>
     </div>
   </div>
-  <div *ngIf="isFormInvalid" class="error-message">Some fields are missing</div>
+  <div *ngIf="isFormInvalid || isBirthDateInvalid" class="error-message">
+    Some fields are missing
+  </div>
 </div>
