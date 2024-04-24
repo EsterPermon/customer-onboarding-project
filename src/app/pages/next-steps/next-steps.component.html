@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="form-container">
+    <div class="next-steps">
+      <h1>Personal details</h1>
+
+      <form
+        [formGroup]="userInfoForm"
+        (ngSubmit)="onSubmit()"
+        class="details-form"
+      >
+        <div class="details-form-content">
+          <div class="radio-field">
+            <label
+              [ngClass]="{
+                error: isFormInvalid && userInfoForm.get('gender')?.invalid
+              }"
+              >Gender</label
+            >
+            <div class="options">
+              <div class="option">
+                <input
+                  id="male"
+                  type="radio"
+                  value="male"
+                  formControlName="gender"
+                />
+                <label for="male">Male</label>
+              </div>
+              <div class="option">
+                <input
+                  id="female"
+                  type="radio"
+                  value="female"
+                  formControlName="gender"
+                />
+                <label for="female">Female</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="space"></div>
+
+          <div class="field">
+            <label
+              for="firstName"
+              [ngClass]="{
+                error: isFormInvalid && userInfoForm.get('firstName')?.invalid
+              }"
+              >First Name</label
+            >
+            <input
+              type="text"
+              placeholder="First name (as shown in passport /ID)"
+              formControlName="firstName"
+              id="firstName"
+            />
+          </div>
+
+          <div class="space"></div>
+
+          <div class="field">
+            <label
+              for="lastName"
+              [ngClass]="{
+                error: isFormInvalid && userInfoForm.get('lastName')?.invalid
+              }"
+              >Last Name</label
+            >
+            <input
+              type="text"
+              placeholder="Last name (as shown in passport /ID)"
+              formControlName="lastName"
+              id="lastName"
+            />
+          </div>
+
+          <div class="space"></div>
+
+          <div class="date-field">
+            <label
+              [ngClass]="{
+                error:
+                  isFormInvalid &&
+                  (userInfoForm.get('dayOfBirth')?.invalid ||
+                    userInfoForm.get('monthOfBirth')?.invalid ||
+                    userInfoForm.get('yearOfBirth')?.invalid)
+              }"
+              >Date of birth</label
+            >
+            <div>
+              <input
+                type="number"
+                placeholder="Day"
+                formControlName="dayOfBirth"
+                min="1"
+                max="31"
+              />
+              <input
+                type="number"
+                placeholder="Month"
+                formControlName="monthOfBirth"
+                min="1"
+                max="12"
+              />
+              <input
+                type="number"
+                placeholder="Year"
+                formControlName="yearOfBirth"
+                min="1900"
+                max="{{ currentYear }}"
+              />
+            </div>
+          </div>
+
+          <div class="space"></div>
+
+          <div class="field">
+            <label
+              for="nationality"
+              [ngClass]="{
+                error: isFormInvalid && userInfoForm.get('nationality')?.invalid
+              }"
+              >Nationality</label
+            >
+            <input
+              id="nationality"
+              type="text"
+              placeholder="Nationality"
+              formControlName="nationality"
+            />
+          </div>
+        </div>
+
+        <button class="submit-button" type="submit">Continue</button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="isFormInvalid" class="error-message">Some fields are missing</div>
+</div>
